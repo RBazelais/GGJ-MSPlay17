@@ -16,10 +16,14 @@ public class GroundCollide : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
+
+		float impactSpeed = Mathf.Abs( collision.relativeVelocity.y);
+		Debug.Log (impactSpeed);
 			
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
-		gameObject.GetComponent<WaveTerrain> ().pushDownPos (3, -0.5f, relativePixelPos.x, relativePixelPos.z);
-
+		if (impactSpeed > 1) {
+			Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
+			gameObject.GetComponent<WaveTerrain> ().pushDownPos (3, impactSpeed * -0.05f, relativePixelPos.x, relativePixelPos.z);
+		}
 	}
 }
