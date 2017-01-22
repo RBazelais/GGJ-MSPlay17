@@ -48,8 +48,9 @@ public class WaveTerrain : MonoBehaviour {
 				//				v[i,j] += (u[i-1,j] + u[i+1,j] + u[i,j-1] + u[i,j+1])/4 – u[i,j]
 				//				v[i,j] *= 0.99
 				//				u[i,j] += v[i,j]
-				float defaultValue = elevation;
-				//				float defaultValue = heightMap[x, y];
+//				float defaultValue = elevation;
+				float defaultValue = heightMap[x, y];
+
 				float neighborLeft = (x == 0) ? defaultValue : heightMap[x-1, y];
 				float neighborTop = (y == 0) ? defaultValue : heightMap[x, y-1];
 				float neighborRight = (x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y];
