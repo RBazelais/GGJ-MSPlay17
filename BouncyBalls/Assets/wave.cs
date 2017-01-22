@@ -5,6 +5,7 @@ using UnityEngine;
 public class wave : MonoBehaviour {
 
 	public Terrain thisTerrain;
+	public float damping;
 
 	private float[,] velocityMap;
 	private float[,] heightMap;
@@ -25,7 +26,8 @@ public class wave : MonoBehaviour {
 		//heightMap = velocityMap;
 		thisTerrain.terrainData.SetHeights(0, 0, heightMap);
 
-		velocityMap [16, 16] = -2f;
+		//velocityMap [16, 16] = -4f;
+		pushDown(2, -4f, velocityMap.GetLength(0) / 2, velocityMap.GetLength(1) / 2);
 	}
 	
 	// Update is called once per frame
@@ -36,10 +38,16 @@ public class wave : MonoBehaviour {
 //				v[i,j] += (u[i-1,j] + u[i+1,j] + u[i,j-1] + u[i,j+1])/4 – u[i,j]
 //				v[i,j] *= 0.99
 //				u[i,j] += v[i,j]
-				float neighborLeft = (x == 0) ? elevation : heightMap[x-1, y];
-				float neighborTop = (y == 0) ? elevation : heightMap[x, y-1];
-				float neighborRight = (x == heightMap.GetLength(0) - 1) ? elevation : heightMap[x+1, y];
-				float neighborBottom = (y == heightMap.GetLength(1) - 1) ? elevation : heightMap[x, y+1];
+				float defaultValue = heightMap[x, y];
+				float neighborLeft = (x == 0) ? defaultValue : heightMap[x-1, y];
+				float neighborTop = (y == 0) ? defaultValue : heightMap[x, y-1];
+				float neighborRight = (x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y];
+				float neighborBottom = (y == heightMap.GetLength(1) - 1) ? defaultValue : heightMap[x, y+1];
+
+				float neighborTopLeft = (x == 0) ? defaultValue : (y == 0) ? defaultValue : heightMap[x-1, y-1];
+				float neighborTopRight = (y == 0) ? defaultValue : (x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y-1];
+				float neighborBottomRight = (y == heightMap.GetLength(1) - 1) ? defaultValue :(x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y+1];
+				float neighborBottomLeft = (y == heightMap.GetLength(1) - 1) ? defaultValue : (x == 0) ? defaultValue : heightMap[x-1, y+1];
 
 //				if (x == 16 && y == 16) {
 //					Debug.Log (neighborBottom);
@@ -57,8 +65,10 @@ public class wave : MonoBehaviour {
 //					Debug.Log (heightMap [x, y]);
 //				}
 
-				velocityMap[x,y] += (neighborBottom + neighborLeft + neighborRight + neighborTop) / 4f - heightMap[x,y];
-				velocityMap[x,y] *= 0.98f;
+				velocityMap[x,y] += (((neighborBottom + neighborLeft + neighborRight + neighborTop)
+					+ (neighborTopLeft + neighborTopRight + neighborBottomLeft + neighborBottomRight) * 0.66f) / 6.64f
+					- heightMap[x,y]) * 0.25f;
+				velocityMap[x,y] *= damping;
 //				Debug.Log (velocityMap [x, y]);
 			}
 		}
@@ -71,5 +81,21 @@ public class wave : MonoBehaviour {
 		//Debug.Log (velocityMap [16, 16]);
 
 	
+	}
+
+	void pushDown (int radius, float force, int xPos, int yPos) {
+		int startX = (xPos - radius < 0) ? 0 : xPos - radius;
+		int startY = (yPos - radius < 0) ? 0 : yPos - radius;
+		int endX = (xPos + radius > velocityMap.GetLength (0) - 1) ? velocityMap.GetLength (0) - 1 : xPos + radius;
+		int endY = (yPos + radius > velocityMap.GetLength (1) - 1) ? velocityMap.GetLength (1) - 1 : yPos + radius;
+
+		int x;
+		int y;
+		for (x = startX; x < endX; ++x) {
+			for (y = startY; y < endY; ++y) {
+				velocityMap [x, y] += force / Mathf.Sqrt( x * x + y * y);
+
+			}
+		}
 	}
 }

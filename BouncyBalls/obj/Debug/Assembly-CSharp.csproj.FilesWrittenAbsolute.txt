@@ -40,3 +40,5 @@
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Advertisements.dll
+/Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Purchasing.dll
