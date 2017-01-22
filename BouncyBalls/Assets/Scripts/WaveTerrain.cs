@@ -48,8 +48,8 @@ public class WaveTerrain : MonoBehaviour {
 				//				v[i,j] += (u[i-1,j] + u[i+1,j] + u[i,j-1] + u[i,j+1])/4 – u[i,j]
 				//				v[i,j] *= 0.99
 				//				u[i,j] += v[i,j]
-//				float defaultValue = elevation;
-				float defaultValue = heightMap[x, y];
+				float defaultValue = elevation;
+//				float defaultValue = heightMap[x, y];
 
 				float neighborLeft = (x == 0) ? defaultValue : heightMap[x-1, y];
 				float neighborTop = (y == 0) ? defaultValue : heightMap[x, y-1];
@@ -105,10 +105,19 @@ public class WaveTerrain : MonoBehaviour {
 
 		int x;
 		int y;
+		float totalVelocity = 0;
+		float velocityChange = 0;
 		for (x = startX; x < endX; ++x) {
 			for (y = startY; y < endY; ++y) {
-				velocityMap [x, y] += force / Mathf.Sqrt( x * x + y * y);
-
+				velocityChange = force / Mathf.Sqrt (x * x + y * y);
+				velocityMap [x, y] += velocityChange;
+				totalVelocity += velocityChange;
+			}
+		}
+		float counterVelocity = velocityChange / velocityMap.Length;
+		for (x = 0; x <  velocityMap.GetLength (0); ++x) {
+			for (y = 0; y <  velocityMap.GetLength (1); ++y) {
+				velocityMap [x, y] -= counterVelocity;
 			}
 		}
 	}

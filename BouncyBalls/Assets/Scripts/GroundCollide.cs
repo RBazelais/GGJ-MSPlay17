@@ -23,7 +23,7 @@ public class GroundCollide : MonoBehaviour {
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
 		if (impactSpeed > 1) {
 			Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
-			gameObject.GetComponent<WaveTerrain> ().pushDownPos (3, impactSpeed * -0.05f, relativePixelPos.x, relativePixelPos.z);
+			gameObject.GetComponent<WaveTerrain> ().pushDownPos (3, impactSpeed * -0.04f, relativePixelPos.x, relativePixelPos.z);
 		}
 	}
 }
