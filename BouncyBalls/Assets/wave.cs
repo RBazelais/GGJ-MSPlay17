@@ -10,7 +10,7 @@ public class wave : MonoBehaviour {
 	private float[,] velocityMap;
 	private float[,] heightMap;
 	private float[,] displayMap;
-	private float elevation = 1f;
+	private float elevation = 0.25f;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +35,7 @@ public class wave : MonoBehaviour {
 		thisTerrain.terrainData.SetHeights(0, 0, displayMap);
 
 		//velocityMap [16, 16] = -4f;
-		pushDown(2, -8f, velocityMap.GetLength(0) / 2, velocityMap.GetLength(1) / 2);
+		pushDown(3, -0.5f, velocityMap.GetLength(0) / 2, velocityMap.GetLength(1) / 2);
 	}
 	
 	// Update is called once per frame
@@ -94,7 +94,7 @@ public class wave : MonoBehaviour {
 	
 	}
 
-	void pushDown (int radius, float force, int xPos, int yPos) {
+	public void pushDown (int radius, float force, int xPos, int yPos) {
 		int startX = (xPos - radius < 0) ? 0 : xPos - radius;
 		int startY = (yPos - radius < 0) ? 0 : yPos - radius;
 		int endX = (xPos + radius > velocityMap.GetLength (0) - 1) ? velocityMap.GetLength (0) - 1 : xPos + radius;
