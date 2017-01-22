@@ -9,13 +9,15 @@ public class wave : MonoBehaviour {
 
 	private float[,] velocityMap;
 	private float[,] heightMap;
+	private float[,] displayMap;
 	private float elevation = 1f;
 
 	// Use this for initialization
 	void Start () {
 		//heightMap = thisTerrain.terrainData.GetHeights(0, 0, thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight);
-		velocityMap = new float[thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight];
-		heightMap = new float[thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight];
+		velocityMap = new float[thisTerrain.terrainData.heightmapWidth * 2, thisTerrain.terrainData.heightmapHeight * 2];
+		heightMap = new float[thisTerrain.terrainData.heightmapWidth * 2, thisTerrain.terrainData.heightmapHeight * 2];
+		displayMap = new float[thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight];
 
 		for (int x = 0; x < velocityMap.GetLength(0); x++) {
 			for (int y = 0; y < velocityMap.GetLength(1); y++) {
@@ -23,11 +25,17 @@ public class wave : MonoBehaviour {
 				heightMap [x, y] = elevation;
 			}
 		}
+
+		for (int x = 0; x < displayMap.GetLength(0); x++) {
+			for (int y = 0; y < displayMap.GetLength(1); y++) {
+				displayMap [x, y] = 0f;
+			}
+		}
 		//heightMap = velocityMap;
-		thisTerrain.terrainData.SetHeights(0, 0, heightMap);
+		thisTerrain.terrainData.SetHeights(0, 0, displayMap);
 
 		//velocityMap [16, 16] = -4f;
-		pushDown(2, -4f, velocityMap.GetLength(0) / 2, velocityMap.GetLength(1) / 2);
+		pushDown(2, -8f, velocityMap.GetLength(0) / 2, velocityMap.GetLength(1) / 2);
 	}
 	
 	// Update is called once per frame
@@ -38,7 +46,8 @@ public class wave : MonoBehaviour {
 //				v[i,j] += (u[i-1,j] + u[i+1,j] + u[i,j-1] + u[i,j+1])/4 – u[i,j]
 //				v[i,j] *= 0.99
 //				u[i,j] += v[i,j]
-				float defaultValue = heightMap[x, y];
+				float defaultValue = elevation;
+//				float defaultValue = heightMap[x, y];
 				float neighborLeft = (x == 0) ? defaultValue : heightMap[x-1, y];
 				float neighborTop = (y == 0) ? defaultValue : heightMap[x, y-1];
 				float neighborRight = (x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y];
@@ -77,7 +86,9 @@ public class wave : MonoBehaviour {
 				heightMap[x,y] += velocityMap[x,y];
 			}
 		}
-		this.thisTerrain.terrainData.SetHeights(0, 0, heightMap);
+
+		updateWithSection ();
+		//this.thisTerrain.terrainData.SetHeights(0, 0, heightMap);
 		//Debug.Log (velocityMap [16, 16]);
 
 	
@@ -97,5 +108,15 @@ public class wave : MonoBehaviour {
 
 			}
 		}
+	}
+
+	void updateWithSection() {
+		for (int x = 0; x < displayMap.GetLength (0); x++) {
+			for (int y = 0; y < displayMap.GetLength (1); y++) {
+				displayMap [x, y] = heightMap [x + displayMap.GetLength (0) / 2, y + displayMap.GetLength (1) / 2];
+			}
+		}
+		 
+		this.thisTerrain.terrainData.SetHeights(0, 0, displayMap);
 	}
 }
