@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveTerrain : MonoBehaviour {
 
 	public float damping;
+	public int bufferZone;
 
 	private Terrain thisTerrain;
 	private float[,] velocityMap;
@@ -17,8 +18,8 @@ public class WaveTerrain : MonoBehaviour {
 		thisTerrain = gameObject.GetComponent<Terrain> ();
 
 		//heightMap = thisTerrain.terrainData.GetHeights(0, 0, thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight);
-		velocityMap = new float[thisTerrain.terrainData.heightmapWidth * 2, thisTerrain.terrainData.heightmapHeight * 2];
-		heightMap = new float[thisTerrain.terrainData.heightmapWidth * 2, thisTerrain.terrainData.heightmapHeight * 2];
+		velocityMap = new float[thisTerrain.terrainData.heightmapWidth * (1 + bufferZone), thisTerrain.terrainData.heightmapHeight * (1 + bufferZone)];
+		heightMap = new float[thisTerrain.terrainData.heightmapWidth * (1 + bufferZone), thisTerrain.terrainData.heightmapHeight * (1 + bufferZone)];
 		displayMap = new float[thisTerrain.terrainData.heightmapWidth, thisTerrain.terrainData.heightmapHeight];
 
 		for (int x = 0; x < velocityMap.GetLength(0); x++) {
@@ -60,22 +61,6 @@ public class WaveTerrain : MonoBehaviour {
 				float neighborTopRight = (y == 0) ? defaultValue : (x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y-1];
 				float neighborBottomRight = (y == heightMap.GetLength(1) - 1) ? defaultValue :(x == heightMap.GetLength(0) - 1) ? defaultValue : heightMap[x+1, y+1];
 				float neighborBottomLeft = (y == heightMap.GetLength(1) - 1) ? defaultValue : (x == 0) ? defaultValue : heightMap[x-1, y+1];
-
-				//				if (x == 16 && y == 16) {
-				//					Debug.Log (neighborBottom);
-				//					Debug.Log (neighborLeft);
-				//					Debug.Log (heightMap[x-1, y]);
-				//					Debug.Log (heightMap[x-2, y]);
-				//					Debug.Log (heightMap[x, y]);
-				//
-				//
-				//					Debug.Log (neighborRight);
-				//					Debug.Log (neighborTop);
-				//					Debug.Log (heightMap[x, y-1]);
-				//
-				//					Debug.Log ((neighborBottom + neighborLeft + neighborRight + neighborTop) / 4);
-				//					Debug.Log (heightMap [x, y]);
-				//				}
 
 				velocityMap[x,y] += (((neighborBottom + neighborLeft + neighborRight + neighborTop)
 					+ (neighborTopLeft + neighborTopRight + neighborBottomLeft + neighborBottomRight) * 0.66f) / 6.64f
@@ -124,15 +109,15 @@ public class WaveTerrain : MonoBehaviour {
 
 	public void pushDownPos (int radius, float force, float xPos, float yPos) {
 		Vector3 terrainSize = thisTerrain.terrainData.bounds.size;
-		int yIntPos = (displayMap.GetLength (0) / 2) + Mathf.FloorToInt ((xPos / terrainSize.x) * displayMap.GetLength (0));
-		int xIntPos = (displayMap.GetLength (1) / 2) + Mathf.FloorToInt ((yPos / terrainSize.z) * displayMap.GetLength (1));
+		int yIntPos = (bufferZone * displayMap.GetLength (0) / 2) + Mathf.FloorToInt ((xPos / terrainSize.x) * displayMap.GetLength (0));
+		int xIntPos = (bufferZone * displayMap.GetLength (1) / 2) + Mathf.FloorToInt ((yPos / terrainSize.z) * displayMap.GetLength (1));
 		pushDown (radius, force, xIntPos, yIntPos);
 	}
 
 	void updateWithSection() {
 		for (int x = 0; x < displayMap.GetLength (0); x++) {
 			for (int y = 0; y < displayMap.GetLength (1); y++) {
-				displayMap [x, y] = heightMap [x + displayMap.GetLength (0) / 2, y + displayMap.GetLength (1) / 2];
+				displayMap [x, y] = heightMap [x + bufferZone * displayMap.GetLength (0) / 2, y + bufferZone * displayMap.GetLength (1) / 2];
 			}
 		}
 

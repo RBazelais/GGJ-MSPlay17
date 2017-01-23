@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GroundCollide : MonoBehaviour {
 
+	public float collideForce;
+	public int forceWidth;
+	public float minimumSpeed;
+
 	// Use this for initialization
 	void Start () {
 //		this.GetComponent<Rigidbody>().
@@ -21,9 +25,9 @@ public class GroundCollide : MonoBehaviour {
 		Debug.Log (impactSpeed);
 			
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
-		if (impactSpeed > 1) {
+		if (impactSpeed > minimumSpeed) {
 			Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
-			gameObject.GetComponent<WaveTerrain> ().pushDownPos (3, impactSpeed * -0.04f, relativePixelPos.x, relativePixelPos.z);
+			gameObject.GetComponent<WaveTerrain> ().pushDownPos (forceWidth, -1 * (impactSpeed * collideForce * collideForce), relativePixelPos.x, relativePixelPos.z);
 		}
 	}
 }
