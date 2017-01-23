@@ -22,12 +22,24 @@ public class GroundCollide : MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 
 		float impactSpeed = Mathf.Abs( collision.relativeVelocity.y);
-		Debug.Log (impactSpeed);
+
 			
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
 		if (impactSpeed > minimumSpeed) {
+			//float bonusSlam = (collision.collider.GetComponent<PlayerController> ().canSlam) ? 1f : 2f;
+			float bonusRipple = collision.collider.GetComponent<PlayerController> ().heavyRippleAmount;
+				
 			Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
-			gameObject.GetComponent<WaveTerrain> ().pushDownPos (forceWidth, -1 * (impactSpeed * collideForce * collideForce), relativePixelPos.x, relativePixelPos.z);
+			gameObject.GetComponent<WaveTerrain> ().pushDownPos (
+				forceWidth + Mathf.FloorToInt(bonusRipple), 
+				-1f * impactSpeed * collideForce * collideForce, 
+				relativePixelPos.x, 
+				relativePixelPos.z
+			);
+		
 		}
+
+		collision.collider.GetComponent<PlayerController> ().canSlam = true;
+		collision.collider.GetComponent<PlayerController> ().heavyRippleAmount = 0f;
 	}
 }
