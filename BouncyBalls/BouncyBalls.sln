@@ -5,6 +5,8 @@ Project("{7B0A69B4-CFA5-73DA-61DA-CB4F79980512}") = "BouncyBalls", "Assembly-CSh
 EndProject
 Project("{7B0A69B4-CFA5-73DA-61DA-CB4F79980512}") = "BouncyBalls", "Assembly-CSharp.csproj", "{330805AE-33B0-5101-9403-EAC75EF932E2}"
 EndProject
+Project("{7B0A69B4-CFA5-73DA-61DA-CB4F79980512}") = "BouncyBalls", "Assembly-CSharp-Editor.csproj", "{9C236D76-9950-EE2D-0B79-E89B7A8A9E39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{330805AE-33B0-5101-9403-EAC75EF932E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{330805AE-33B0-5101-9403-EAC75EF932E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{330805AE-33B0-5101-9403-EAC75EF932E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C236D76-9950-EE2D-0B79-E89B7A8A9E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C236D76-9950-EE2D-0B79-E89B7A8A9E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C236D76-9950-EE2D-0B79-E89B7A8A9E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C236D76-9950-EE2D-0B79-E89B7A8A9E39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,23 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
+
 
 public class PlayerController : MonoBehaviour {
 
 	public string verticalName;
 	public string horizontalName;
 	public string actionName;
+	public int playerId;
 
 	public bool canSlam;
 	public float heavyRippleAmount;
 
+	private Player player; // The Rewired Player
+
+	void Awake() {
+		// Get the Rewired Player object for this player and keep it for the duration of the character's lifetime
+		player = ReInput.players.GetPlayer(playerId);
+	}
+
+
 	// Use this for initialization
 	void Start () {
-		
+		foreach (string names in Input.GetJoystickNames()) {
+			Debug.Log (names);
+
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
 		if (gameObject.GetComponent<Rigidbody> ().velocity.y > 8f) {
 			Debug.Log("Slow Down!");
 
@@ -26,15 +43,15 @@ public class PlayerController : MonoBehaviour {
 			);
 		}
 
-		var x = Input.GetAxis (horizontalName) * Time.deltaTime * 500.0f;
-		var z = Input.GetAxis (verticalName) * Time.deltaTime * 500.0f;
+		var x = player.GetAxis("MoveLeftRight") * Time.deltaTime * 500.0f;
+		var z = player.GetAxis("MoveForwardBack") * Time.deltaTime * 500.0f;
 
 		//transform.Rotate (0, x, 0);
 		gameObject.GetComponent<Rigidbody>().AddForce(
 			new Vector3(x, 0f, z), ForceMode.Acceleration
 		);
 
-		if (Input.GetButtonDown(actionName) && canSlam) {
+		if (player.GetButtonDown("Slam") && canSlam) {
 			float downForce = (gameObject.transform.position.y - 3f) * -1.5f;
 			heavyRippleAmount = (gameObject.transform.position.y - 8.5f) * 0.5f;
 			gameObject.GetComponent<Rigidbody>().AddForce(
