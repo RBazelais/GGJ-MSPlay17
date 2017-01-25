@@ -7,6 +7,7 @@ public class GroundCollide : MonoBehaviour {
 	public float collideForce;
 	public int forceWidth;
 	public float minimumSpeed;
+	public float offPlatformRadius;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,12 @@ public class GroundCollide : MonoBehaviour {
 
 		float impactSpeed = Mathf.Abs( collision.relativeVelocity.y);
 
+		if (collision.collider.transform.position.x * collision.collider.transform.position.x
+			+ collision.collider.transform.position.z * collision.collider.transform.position.x
+		    > offPlatformRadius * offPlatformRadius)
+		{
+			Debug.Log("Out of Bounds!");
+		}
 			
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
 		if (impactSpeed > minimumSpeed) {
