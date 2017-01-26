@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GroundCollide : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class GroundCollide : MonoBehaviour {
 	public int forceWidth;
 	public float minimumSpeed;
 	public float offPlatformRadius;
+	public GameObject[] ballArray;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,12 @@ public class GroundCollide : MonoBehaviour {
 		    > offPlatformRadius * offPlatformRadius)
 		{
 			Debug.Log("Out of Bounds!");
+			//SceneManager.LoadScene(SceneManager.GetActiveScene ().name);
+			foreach (GameObject thisObject in ballArray) {
+				ResetManager resetManager = thisObject.GetComponent<ResetManager> ();
+				resetManager.ResetMe ();
+				resetManager.RestartMe ();
+			}
 		}
 			
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
@@ -48,5 +56,9 @@ public class GroundCollide : MonoBehaviour {
 
 		collision.collider.GetComponent<PlayerController> ().canSlam = true;
 		collision.collider.GetComponent<PlayerController> ().heavyRippleAmount = 0f;
+	}
+
+	void ResetAll () {
+		
 	}
 }
