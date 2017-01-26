@@ -46,6 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Mesh Explosion\Demo\ClickOrTapToExplode.cs" />
+     <Compile Include="Assets\Mesh Explosion\Demo\ReloadScene.cs" />
+     <Compile Include="Assets\Mesh Explosion\Internal\DestroyAfterTime.cs" />
+     <Compile Include="Assets\Mesh Explosion\Internal\DestroyOnFadeCompletion.cs" />
+     <Compile Include="Assets\Mesh Explosion\Internal\Fade.cs" />
+     <Compile Include="Assets\Mesh Explosion\Internal\MeshExplosion.cs" />
+     <Compile Include="Assets\Mesh Explosion\MeshExploder.cs" />
      <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />
@@ -103,6 +110,7 @@
      <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
+     <None Include="Assets\Mesh Explosion\Read Me.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
