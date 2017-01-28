@@ -11,11 +11,17 @@ public class GroundCollide : MonoBehaviour {
 	public float offPlatformRadius;
 	public GameObject[] ballArray;
 	public GameObject[] ballPrefabs;
+	public GameObject scoreManagerObject;
+
+
+	private GameObject blueBall;
+	private GameObject redBall;
 
 	// Use this for initialization
 	void Start () {
 //		this.GetComponent<Rigidbody>().
-
+		blueBall = Instantiate(ballPrefabs[0]);
+		redBall = Instantiate(ballPrefabs[1]);
 	}
 	
 	// Update is called once per frame
@@ -63,8 +69,17 @@ public class GroundCollide : MonoBehaviour {
 			//SceneManager.LoadScene(SceneManager.GetActiveScene ().name);
 
 			collision.collider.GetComponent<MeshExploder> ().Explode ();
-			ResetAll();
-
+			//ResetAll();
+			if (collision.collider.tag == "blue") {
+				scoreManagerObject.GetComponent<ScoreManager> ().loseBlueLife();
+				Destroy(blueBall);
+				blueBall = Instantiate(ballPrefabs[0]);
+			} else if (collision.collider.tag == "red") {
+				scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
+				Destroy(redBall);
+				redBall = Instantiate(ballPrefabs[1]);
+			}
+			//collision.collider.tag
 		}
 
 		collision.collider.GetComponent<PlayerController> ().canSlam = true;

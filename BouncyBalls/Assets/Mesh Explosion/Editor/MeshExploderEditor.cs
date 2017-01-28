@@ -37,8 +37,10 @@ public class MeshExploderEditor : Editor {
 	static GUIContent useGravityLabel = new GUIContent("Simulate Gravity",
 		"When this option is enabled gravity is applied to the explosion fragments so that they fall realistically.");
 	static GUIContent colliderThicknessLabel = new GUIContent("Collider Thickness",
-		"This option determines that thickness of the colliders that are added to the fragments when doing physics explosions. If it is too small then the fragments will fall through other objects; if it is too large then it will be visible that the fragments are not touching surfaces that they are resting on.");
-	
+		"This option determines that thickness of the colliders that are added to the fragments when doing physics explosions. If it is too small then the fragments will fall through other objects; if it is too large then it will be visible that the fragments are not touching surfaces that they are resting on.");	
+	static GUIContent explosionLayerLabel = new GUIContent("Explosion Game Layer",
+		"This option determines which, if any, layer the explosion should take place on.");
+
 	const int indentIncrement = 2;
 	
 	SerializedProperty minSpeedProp;
@@ -54,6 +56,8 @@ public class MeshExploderEditor : Editor {
 	SerializedProperty allowShadowsProp;
 	SerializedProperty shadersAlreadyHandleTransparencyProp;
 	SerializedProperty colliderThicknessProp;
+	SerializedProperty explosionLayerProp;
+
 	
 	bool showAdvancedOptions = false;
 	
@@ -72,6 +76,8 @@ public class MeshExploderEditor : Editor {
 		shadersAlreadyHandleTransparencyProp =
 			serializedObject.FindProperty("shadersAlreadyHandleTransparency");
 		colliderThicknessProp = serializedObject.FindProperty("colliderThickness");
+		explosionLayerProp = serializedObject.FindProperty("explosionLayer");
+
 	}
 	
 	public override void OnInspectorGUI() {
@@ -128,6 +134,8 @@ public class MeshExploderEditor : Editor {
 			EditorGUILayout.PropertyField(allowShadowsProp, allowShadowsLabel);
 			EditorGUILayout.PropertyField(
 				shadersAlreadyHandleTransparencyProp, shadersAlreadyHandleTransparencyLabel);
+			EditorGUILayout.PropertyField(explosionLayerProp, explosionLayerLabel);
+
 			EditorGUI.indentLevel -= indentIncrement;
 		}
 		

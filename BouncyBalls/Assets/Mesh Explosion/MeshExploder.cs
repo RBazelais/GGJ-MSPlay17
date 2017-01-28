@@ -28,6 +28,7 @@ public class MeshExploder : MonoBehaviour {
 	public bool useMeshBoundsCenter = false;
 	public bool allowShadows = false;
 	public bool shadersAlreadyHandleTransparency = false;
+	public int explosionLayer = 0;
 	
 	public struct MeshExplosionPreparation {
 		public Mesh startMesh;
@@ -489,7 +490,6 @@ public class MeshExploder : MonoBehaviour {
 			return null;
 		} else {
 			var explosion = SetUpExplosionPiece(explosionPieceName);
-			
 			explosion.AddComponent<MeshExplosion>().Go(
 				preparation, minSpeed, maxSpeed, minRotationSpeed, maxRotationSpeed, useGravity,
 				preScaled ? Vector3.one : transform.lossyScale);
@@ -502,6 +502,8 @@ public class MeshExploder : MonoBehaviour {
 		var explosion = new GameObject(name);
 		
 		{
+			explosion.layer = explosionLayer;
+			Debug.Log (explosionLayer);
 			var thisTransform = transform;
 			var explosionTransform = explosion.transform;
 			explosionTransform.localPosition = thisTransform.position;
