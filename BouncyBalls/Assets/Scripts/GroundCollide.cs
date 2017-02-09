@@ -75,12 +75,18 @@ public class GroundCollide : MonoBehaviour {
 				Destroy(blueBall);
 				if (blueHasLives) {					
 					blueBall = Instantiate (ballPrefabs [0]);
+				} else {
+					//Get Rigitbody an then freeze it's X and Y position when blueBall wins
+					redBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 				}
 			} else if (collision.collider.tag == "red") {
 				bool redHasLives = scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
 				Destroy(redBall);
 				if (redHasLives) {
 					redBall = Instantiate (ballPrefabs [1]);
+				}else {
+					//
+					blueBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 				}
 			}
 			//collision.collider.tag
