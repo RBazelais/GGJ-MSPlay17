@@ -86,6 +86,16 @@ public class ScoreManager : MonoBehaviour {
 //		}
 //		
 //	}
-		
+
+	public void resetScore() {
+		for (int i = 0; i < numLives; ++i) {
+			redLifeIcons [i].GetComponent<MeshRenderer> ().enabled = true;
+			blueLifeIcons [i].GetComponent<MeshRenderer> ().enabled = true;
+		}
+
+		blueLivesRemaining = numLives;
+		redLivesRemaining = numLives;
+
+	}
 
 }

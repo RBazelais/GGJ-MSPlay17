@@ -108,4 +108,14 @@ public class GroundCollide : MonoBehaviour {
 			 
 		}
 	}
+
+	public void clearBalls() {
+		Destroy(blueBall);
+		Destroy(redBall);	
+	}
+
+	public void setupBalls() {
+		blueBall = Instantiate(ballPrefabs[0]);
+		redBall = Instantiate(ballPrefabs[1]);
+	}
 }
