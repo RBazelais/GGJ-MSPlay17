@@ -42,31 +42,7 @@
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.Mdb.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Advertisements.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Purchasing.dll
-<<<<<<< Updated upstream
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Photon3Unity3D.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/websocket-sharp.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
 /Users/davidwallin/Documents/BouncyBalls/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
-=======
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Assembly-CSharp.dll.mdb
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Assembly-CSharp.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/obj/Debug/Assembly-CSharp.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/obj/Debug/Assembly-CSharp.dll.mdb
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEditor.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.UI.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Networking.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.Analytics.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.HoloLens.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/UnityEngine.VR.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.SerializationLogic.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.DataContract.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/ICSharpCode.NRefactory.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.UNetWeaver.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Unity.CecilTools.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.Pdb.dll
-/Users/Rachel/Documents/Github/GGJ-MSPlay17/BouncyBalls/Temp/bin/Debug/Mono.Cecil.Mdb.dll
->>>>>>> Stashed changes

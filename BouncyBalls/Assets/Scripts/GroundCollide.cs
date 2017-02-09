@@ -88,7 +88,7 @@ public class GroundCollide : MonoBehaviour {
 
 	void ResetAll () {
 		for (int i = 0; i < ballArray.Length; ++i) {
-			//				ResetManager resetManager = thisObject.GetComponent<ResetManager> ();
+			//			ResetManager resetManager = thisObject.GetComponent<ResetManager> ();
 			//				resetManager.ResetMe ();
 			//				resetManager.RestartMe ();
 			Destroy(ballArray[i]);

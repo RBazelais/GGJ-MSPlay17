@@ -26,14 +26,12 @@ public class ScoreManager : MonoBehaviour {
 			blueLifeIcons[i].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 			blueLifeIcons [i].transform.rotation = Random.rotation;
 			blueLifeIcons [i].layer = 8;
-			//blueLifeIcons [i].
+
 			redLifeIcons [i] = Instantiate (ballIconPrefabs [1], gameObject.transform);
 			redLifeIcons [i].transform.localPosition = new Vector3 (7f, i * -0.75f + 4.25f, 1f);
 			redLifeIcons[i].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 			redLifeIcons [i].transform.rotation = Random.rotation;
 			redLifeIcons [i].layer = 8;
-
-
 
 		}
 	}
@@ -44,6 +42,8 @@ public class ScoreManager : MonoBehaviour {
 			blueLifeIcons [i].transform.Rotate(new Vector3 (Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
 			redLifeIcons [i].transform.Rotate(new Vector3 (Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
 		}
+
+		//whoWonTheMatch ();
 	}
 
 	public void loseBlueLife() {
@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour {
 			--blueLivesRemaining;
 			blueLifeIcons [blueLivesRemaining].GetComponent<MeshExploder> ().Explode ();
 			blueLifeIcons [blueLivesRemaining].GetComponent<MeshRenderer> ().enabled = false;
-		}
+		} 
 	}
 
 	public void loseRedLife() {
@@ -61,4 +61,21 @@ public class ScoreManager : MonoBehaviour {
 			redLifeIcons [redLivesRemaining].GetComponent<MeshRenderer> ().enabled = false;
 		}
 	}
+
+//	public void whoWonTheMatch(){
+//		if (blueLivesRemaining <= 0) {
+//			Debug.Log ("Red Player Won");
+//			Time.timeScale = 0;
+//
+//			
+//		} 
+//
+//		if (redLivesRemaining <= 0){
+//			Debug.Log ("Blue Player Won");
+//			Time.timeScale = 0;
+//		}
+//		
+//	}
+		
+
 }
