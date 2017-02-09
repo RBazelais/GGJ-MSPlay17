@@ -60,6 +60,7 @@ public class GroundCollide : MonoBehaviour {
 				relativePixelPos.x, 
 				relativePixelPos.z
 			);
+			//gameObject.GetComponent<AudioSource> ().Play ();
 		
 		}
 

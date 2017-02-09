@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
 				new Vector3(x * 100f, downForce, z * 100f), ForceMode.Impulse
 			);
 			canSlam = false; //Set to true again when ball hits ground
+
+			gameObject.GetComponent<AudioSource> ().Play ();
 			Debug.Log(gameObject.transform.position.y);
 		}
 		//transform.Translate (x, 0, z);
