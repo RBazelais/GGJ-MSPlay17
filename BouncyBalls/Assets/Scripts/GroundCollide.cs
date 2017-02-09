@@ -71,13 +71,17 @@ public class GroundCollide : MonoBehaviour {
 			collision.collider.GetComponent<MeshExploder> ().Explode ();
 			//ResetAll();
 			if (collision.collider.tag == "blue") {
-				scoreManagerObject.GetComponent<ScoreManager> ().loseBlueLife();
+				bool blueHasLives = scoreManagerObject.GetComponent<ScoreManager> ().loseBlueLife();
 				Destroy(blueBall);
-				blueBall = Instantiate(ballPrefabs[0]);
+				if (blueHasLives) {					
+					blueBall = Instantiate (ballPrefabs [0]);
+				}
 			} else if (collision.collider.tag == "red") {
-				scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
+				bool redHasLives = scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
 				Destroy(redBall);
-				redBall = Instantiate(ballPrefabs[1]);
+				if (redHasLives) {
+					redBall = Instantiate (ballPrefabs [1]);
+				}
 			}
 			//collision.collider.tag
 		}

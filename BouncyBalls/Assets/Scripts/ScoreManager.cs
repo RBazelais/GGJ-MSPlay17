@@ -46,19 +46,29 @@ public class ScoreManager : MonoBehaviour {
 		//whoWonTheMatch ();
 	}
 
-	public void loseBlueLife() {
+	public bool loseBlueLife() {
 		if (blueLivesRemaining > 0) {
 			--blueLivesRemaining;
 			blueLifeIcons [blueLivesRemaining].GetComponent<MeshExploder> ().Explode ();
 			blueLifeIcons [blueLivesRemaining].GetComponent<MeshRenderer> ().enabled = false;
-		} 
+		}
+		if (blueLivesRemaining > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public void loseRedLife() {
+	public bool loseRedLife() {
 		if (redLivesRemaining > 0) {
 			--redLivesRemaining;
 			redLifeIcons [redLivesRemaining].GetComponent<MeshExploder> ().Explode ();
 			redLifeIcons [redLivesRemaining].GetComponent<MeshRenderer> ().enabled = false;
+		}
+		if (redLivesRemaining > 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
