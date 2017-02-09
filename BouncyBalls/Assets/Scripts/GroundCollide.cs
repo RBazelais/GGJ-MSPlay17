@@ -34,7 +34,32 @@ public class GroundCollide : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
+		collideWith (collision);
+	}
 
+	void ResetAll () {
+		for (int i = 0; i < ballArray.Length; ++i) {
+			//			ResetManager resetManager = thisObject.GetComponent<ResetManager> ();
+			//				resetManager.ResetMe ();
+			//				resetManager.RestartMe ();
+			Destroy(ballArray[i]);
+
+			ballArray[i] = Instantiate(ballPrefabs[i]);
+			 
+		}
+	}
+
+	public void clearBalls() {
+		Destroy(blueBall);
+		Destroy(redBall);	
+	}
+
+	public void setupBalls() {
+		blueBall = Instantiate(ballPrefabs[0]);
+		redBall = Instantiate(ballPrefabs[1]);
+	}
+
+	public void collideWith(Collision collision) {
 		float impactSpeed = Mathf.Abs( collision.relativeVelocity.y);
 		float speedModifier = 1f;
 		int radiusModifier = 0;
@@ -42,8 +67,8 @@ public class GroundCollide : MonoBehaviour {
 
 
 		bool isOutOfBounds = collision.collider.transform.position.x * collision.collider.transform.position.x
-		                     + collision.collider.transform.position.z * collision.collider.transform.position.z
-		                     > offPlatformRadius * offPlatformRadius;
+			+ collision.collider.transform.position.z * collision.collider.transform.position.z
+			> offPlatformRadius * offPlatformRadius;
 
 		if (isOutOfBounds) {
 			speedModifier = 0.25f;
@@ -52,11 +77,11 @@ public class GroundCollide : MonoBehaviour {
 			speedModifier = 0f;
 			radiusModifier = Mathf.FloorToInt (bonusRipple);
 		}
-			
+
 		//gameObject.GetComponent<WaveTerrain> ().pushDown (3, -0.5f, 32, 32);
 		if (impactSpeed > minimumSpeed) {
 			//float bonusSlam = (collision.collider.GetComponent<PlayerController> ().canSlam) ? 1f : 2f;
-				
+
 			Vector3 relativePixelPos = gameObject.transform.InverseTransformPoint (collision.contacts [0].point);
 			gameObject.GetComponent<WaveTerrain> ().pushDownPos (
 				forceWidth + radiusModifier, 
@@ -65,7 +90,7 @@ public class GroundCollide : MonoBehaviour {
 				relativePixelPos.z
 			);
 			//gameObject.GetComponent<AudioSource> ().Play ();
-		
+
 		}
 
 		if (isOutOfBounds)
@@ -98,7 +123,7 @@ public class GroundCollide : MonoBehaviour {
 					redBall = Instantiate (ballPrefabs [1]);
 				}else {
 					blueBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-					
+
 					blueWinUI.alpha = 1f; //Make Blue Win visible
 					blueWinUI.interactable = true; 
 					blueWinUI.blocksRaycasts = true; 
@@ -111,26 +136,6 @@ public class GroundCollide : MonoBehaviour {
 		collision.collider.GetComponent<PlayerController> ().canSlam = true;
 		collision.collider.GetComponent<PlayerController> ().heavyRippleAmount = 0f;
 	}
-
-	void ResetAll () {
-		for (int i = 0; i < ballArray.Length; ++i) {
-			//			ResetManager resetManager = thisObject.GetComponent<ResetManager> ();
-			//				resetManager.ResetMe ();
-			//				resetManager.RestartMe ();
-			Destroy(ballArray[i]);
-
-			ballArray[i] = Instantiate(ballPrefabs[i]);
-			 
-		}
-	}
-
-	public void clearBalls() {
-		Destroy(blueBall);
-		Destroy(redBall);	
-	}
-
-	public void setupBalls() {
-		blueBall = Instantiate(ballPrefabs[0]);
-		redBall = Instantiate(ballPrefabs[1]);
-	}
 }
+
+
