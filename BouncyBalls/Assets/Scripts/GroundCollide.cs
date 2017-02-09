@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GroundCollide : MonoBehaviour {
@@ -12,6 +13,8 @@ public class GroundCollide : MonoBehaviour {
 	public GameObject[] ballArray;
 	public GameObject[] ballPrefabs;
 	public GameObject scoreManagerObject;
+	public CanvasGroup blueWinUI; 
+	public CanvasGroup redWinUI; 
 
 
 	private GameObject blueBall;
@@ -20,8 +23,9 @@ public class GroundCollide : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		this.GetComponent<Rigidbody>().
-		blueBall = Instantiate(ballPrefabs[0]);
-		redBall = Instantiate(ballPrefabs[1]);
+//		blueBall = Instantiate(ballPrefabs[0]);
+//		redBall = Instantiate(ballPrefabs[1]);
+
 	}
 	
 	// Update is called once per frame
@@ -79,6 +83,13 @@ public class GroundCollide : MonoBehaviour {
 				} else {
 					//Get Rigitbody an then freeze it's X and Y position when blueBall wins
 					redBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+
+					redWinUI.alpha = 1f; //Make Red Win Visible
+					redWinUI.interactable = true; 
+					redWinUI.blocksRaycasts = true;
+					Debug.Log ("Show Red Win Screen");
+
+
 				}
 			} else if (collision.collider.tag == "red") {
 				bool redHasLives = scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
@@ -86,8 +97,12 @@ public class GroundCollide : MonoBehaviour {
 				if (redHasLives) {
 					redBall = Instantiate (ballPrefabs [1]);
 				}else {
-					//
 					blueBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+					
+					blueWinUI.alpha = 1f; //Make Blue Win visible
+					blueWinUI.interactable = true; 
+					blueWinUI.blocksRaycasts = true; 
+					Debug.Log ("Show Red Win Screen"); 
 				}
 			}
 			//collision.collider.tag
