@@ -14,8 +14,8 @@ public class GroundCollide : MonoBehaviour {
 	public GameObject[] ballPrefabs;
 	public GameObject scoreManagerObject;
 	public CanvasGroup blueWinUI; 
-	public CanvasGroup redWinUI; 
-
+	public CanvasGroup redWinUI;
+	public GameObject masterUI;
 
 	private GameObject blueBall;
 	private GameObject redBall;
@@ -109,25 +109,25 @@ public class GroundCollide : MonoBehaviour {
 					//Get Rigitbody an then freeze it's X and Y position when blueBall wins
 					redBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
-					redWinUI.alpha = 1f; //Make Red Win Visible
-					redWinUI.interactable = true; 
-					redWinUI.blocksRaycasts = true;
-					Debug.Log ("Show Red Win Screen");
-
-
+					masterUI.GetComponent<MasterCanvasControl> ().showRedWin ();
+//					redWinUI.alpha = 1f; //Make Red Win Visible
+//					redWinUI.interactable = true; 
+//					redWinUI.blocksRaycasts = true;
+					//Debug.Log ("Show Red Win Screen");
 				}
 			} else if (collision.collider.tag == "red") {
 				bool redHasLives = scoreManagerObject.GetComponent<ScoreManager>().loseRedLife();
 				Destroy(redBall);
 				if (redHasLives) {
 					redBall = Instantiate (ballPrefabs [1]);
-				}else {
+				} else {
 					blueBall.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+					masterUI.GetComponent<MasterCanvasControl> ().showBlueWin ();
 
-					blueWinUI.alpha = 1f; //Make Blue Win visible
-					blueWinUI.interactable = true; 
-					blueWinUI.blocksRaycasts = true; 
-					Debug.Log ("Show Red Win Screen"); 
+//					blueWinUI.alpha = 1f; //Make Blue Win visible
+//					blueWinUI.interactable = true; 
+//					blueWinUI.blocksRaycasts = true; 
+					//Debug.Log ("Show Red Win Screen"); 
 				}
 			}
 			//collision.collider.tag
