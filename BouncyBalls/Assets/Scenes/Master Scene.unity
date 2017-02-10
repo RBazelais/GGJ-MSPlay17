@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513831, g: 0.5009165, b: 0.5725697, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -534,6 +534,8 @@ MonoBehaviour:
   - {fileID: 1818766046526474, guid: d79ea1b3afa1c4ea2815202356913cf8, type: 2}
   - {fileID: 1718773121032570, guid: 46775d26b3e4140ba9dea19f88815c36, type: 2}
   numLives: 6
+  offsetLeftRight: 5.75
+  offsetTop: 4.25
 --- !u!81 &357552102
 AudioListener:
   m_ObjectHideFlags: 0
@@ -927,7 +929,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 320, y: 74.1}
+  m_SizeDelta: {x: 320, y: 74.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854974705
 MonoBehaviour:
@@ -2122,10 +2124,10 @@ RectTransform:
   m_Father: {fileID: 2064962919}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 590, y: 335}
+  m_SizeDelta: {x: -66, y: -35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1645905960
 CanvasGroup:
@@ -2398,7 +2400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 320, y: 73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851879319
@@ -2607,10 +2609,10 @@ RectTransform:
   m_Father: {fileID: 2064962919}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 590, y: 335}
+  m_SizeDelta: {x: -66, y: -35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1987410662
 CanvasGroup:

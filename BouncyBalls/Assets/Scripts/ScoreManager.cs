@@ -6,11 +6,15 @@ public class ScoreManager : MonoBehaviour {
 
 	public GameObject[] ballIconPrefabs = new GameObject[2];
 	public int numLives;
+	public float offsetLeftRight;
+	public float offsetTop;
+
 
 	private GameObject[] blueLifeIcons;
 	private GameObject[] redLifeIcons;
 	private int blueLivesRemaining;
 	private int redLivesRemaining;
+
 
 
 	// Use this for initialization
@@ -22,13 +26,13 @@ public class ScoreManager : MonoBehaviour {
 
 		for (int i = 0; i < numLives; ++i) {
 			blueLifeIcons [i] = Instantiate (ballIconPrefabs [0], gameObject.transform);
-			blueLifeIcons [i].transform.localPosition = new Vector3 (-7f, i * -0.75f + 4.25f, 1f);
+			blueLifeIcons [i].transform.localPosition = new Vector3 (-1f * offsetLeftRight, i * -0.75f + offsetTop, 1f);
 			blueLifeIcons[i].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 			blueLifeIcons [i].transform.rotation = Random.rotation;
 			blueLifeIcons [i].layer = 8;
 
 			redLifeIcons [i] = Instantiate (ballIconPrefabs [1], gameObject.transform);
-			redLifeIcons [i].transform.localPosition = new Vector3 (7f, i * -0.75f + 4.25f, 1f);
+			redLifeIcons [i].transform.localPosition = new Vector3 ( offsetLeftRight, i * -0.75f + offsetTop, 1f);
 			redLifeIcons[i].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 			redLifeIcons [i].transform.rotation = Random.rotation;
 			redLifeIcons [i].layer = 8;
