@@ -17,6 +17,8 @@ public class MasterCanvasControl : MonoBehaviour {
 	private Button redWinButton;
 	[SerializeField] 
 	private Button blueWinButton;
+	[SerializeField] 
+	private Camera cameraUI3D;
 
 	//called even if the script or object is not active
 	void Awake(){
@@ -26,7 +28,9 @@ public class MasterCanvasControl : MonoBehaviour {
 
 		blueWinUI.alpha = 0f; //invisible
 		blueWinUI.interactable = false; 
-		blueWinUI.blocksRaycasts = false; 
+		blueWinUI.blocksRaycasts = false;
+
+		cameraUI3D.enabled = false;
 
 	}
 
@@ -80,6 +84,8 @@ public class MasterCanvasControl : MonoBehaviour {
 		redWinUI.interactable = false; 
 		redWinUI.blocksRaycasts = false; 
 
+		cameraUI3D.enabled = false;
+
 		startButton.Select ();
 
 	}
@@ -96,6 +102,8 @@ public class MasterCanvasControl : MonoBehaviour {
 		redWinUI.alpha = 0f; //Red Win is invisible
 		redWinUI.interactable = false; 
 		redWinUI.blocksRaycasts = false; 
+
+		cameraUI3D.enabled = true;
 
 	}
 
